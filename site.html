@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #00ffd9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .result {
+      margin-top: 20px;
+      text-align: left;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Calculadora de Viagem</h1>
+  <label for="tripName">Nome da Viagem: </label>
+  <input type="text" id="tripName"><br>
+  <label for="distance">Kilômetros percorridos: </label>
+  <input type="number" id="distance"><br>
+  <label for="fuelLiters">Litros gastos de combustível: </label>
+  <input type="number" id="fuelLiters"><br>
+  <label for="fuelCost">Valor do litro de combustível (R$): </label>
+  <input type="number" id="fuelCost"><br>
+  <button onclick="calculateTrip()">Calcular</button>
+  <div class="result" id="result"></div>
+</div>
+
+<script>
+function calculateTrip() {
+  var tripName = document.getElementById("tripName").value;
+  var distance = parseFloat(document.getElementById("distance").value);
+  var fuelLiters = parseFloat(document.getElementById("fuelLiters").value);
+  var fuelCost = parseFloat(document.getElementById("fuelCost").value);
+
+  var autonomy = distance / fuelLiters;
+  var tripCost = fuelLiters * fuelCost;
+  var costPerKm = tripCost / distance;
+
+  var result = `Em sua viagem para ${tripName}, você percorreu ${distance} quilômetros e gastou ${fuelLiters} litros de combustível. Seu carro fez ${autonomy.toFixed(2)} km por litro e sua viagem teve um custo de R$${tripCost.toFixed(2)}, sendo R$${costPerKm.toFixed(2)} por quilômetro.`;
+
+  document.getElementById("result").textContent = result;
+}
+</script>
+</body>
+</html>
